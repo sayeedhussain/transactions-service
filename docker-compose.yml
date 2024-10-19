@@ -1,0 +1,58 @@
+version: '3'
+services:
+  test-pyramid:
+    container_name: test-pyramid
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      # Add caching
+      - gradle_user_home:/gradle_user_home
+      # Gradle cache
+      - ./.gradle:/app/.gradle
+      # build cache
+      - ./build:/app/build
+      # Add git to docker, so we can access the tags for use in gradle versioning
+      - ./.git:/app/.git
+      # App sources
+      - ./src:/app/src
+      - ./build.gradle:/app/build.gradle
+      - ./gradle.properties:/app/gradle.properties
+      - ./settings.gradle:/app/settings.gradle
+      - ./config:/app/config
+    environment:
+      - JDBC_DATABASE_URL=jdbc:postgresql://db:5432/testPyramidDB
+      - GRADLE_USER_HOME=/gradle_user_home
+      - SPRING_PROFILES_ACTIVE
+      - RABBIT_HOSTNAME=amqp://rabbitmq
+    depends_on:
+      - db
+      - rabbitmq
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: ${REGISTRY_URL}rabbitmq:3.8.22-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  db:
+    image: "${REGISTRY_URL}postgres:14.5"
+    container_name: test-pyramid-db
+    restart: on-failure
+    user: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=testPyramidDB
+    ports:
+      - "5435:5432"
+
+volumes:
+  gradle_user_home:
+  postgres_data:
