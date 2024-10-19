@@ -24,14 +24,29 @@ repositories {
 }
 
 dependencies {
+// Enables production-ready features like monitoring, metrics, health checks, etc.
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+// Adds support for message-driven microservices using RabbitMQ.
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+// Provides Spring Data JPA to work with relational databases.
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+// Provides the core features for building web applications, including REST APIs.
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+// Adds support for reducing boilerplate code with Lombok annotations.
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
+// Includes basic testing infrastructure for Spring Boot applications (JUnit, Mockito, etc.).
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+// Adds support for testing RabbitMQ-related components.
 	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
+// Required to run JUnit Platform Launcher for executing test cases.
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
