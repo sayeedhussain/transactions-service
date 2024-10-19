@@ -1,1 +1,1 @@
-# test-pyramid
+# integration-tests
