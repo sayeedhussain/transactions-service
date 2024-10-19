@@ -1,4 +1,4 @@
-package com.thoughtworks.test_pyramid;
+package com.example.sample;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

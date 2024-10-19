@@ -1,4 +1,4 @@
-package com.thoughtworks.test_pyramid;
+package com.example.sample;
 
 import org.springframework.stereotype.Service;
 
