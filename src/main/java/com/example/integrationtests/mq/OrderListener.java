@@ -1,4 +1,4 @@
-package com.example.sample;
+package com.example.integrationtests.mq;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;

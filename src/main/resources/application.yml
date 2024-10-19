@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: integration-tests
+  datasource:
+    url: "${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5435/integrationTestsDB}"
+    username: "${JDBC_DATABASE_USERNAME:dbuser}"
+    password: "${JDBC_DATABASE_PASSWORD:dbpassword}"
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    url: "${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5435/integrationTestsDB}"
+    user: "${JDBC_DATABASE_USERNAME:dbuser}"
+    password: "${JDBC_DATABASE_PASSWORD:dbpassword}"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false

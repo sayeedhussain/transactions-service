@@ -1,13 +1,13 @@
-package com.example.sample;
+package com.example.integrationtests;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TestPyramidApplication {
+public class IntegrationTestsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestPyramidApplication.class, args);
+		SpringApplication.run(IntegrationTestsApplication.class, args);
 	}
 
 }
