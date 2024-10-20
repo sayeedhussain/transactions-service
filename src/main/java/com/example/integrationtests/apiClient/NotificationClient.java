@@ -19,7 +19,7 @@ public class NotificationClient {
     }
 
     /*
-    Add integration test for one api call (200 OK) in each apiClient. Unit test other response codes and logic.
+    Add integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic in each ApiClient.
      */
     public NotificationResponse sendOrderNotification(Order order) {
         NotificationRequest request = new NotificationRequest(
@@ -42,7 +42,7 @@ public class NotificationClient {
     }
 
     /*
-    Given one api call is integration tested, this and any other api calls in this class can be unit tested by mocking RestTemplate.
+    Given one api call (above) is integration tested, this and any other api calls in this class can be unit tested by mocking RestTemplate.
      */
     public NotificationResponse getNotification(String notificationId) {
         String url = notificationClientConfig.getUrl() + notificationId;

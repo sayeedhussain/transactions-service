@@ -8,7 +8,7 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
     /*
-    Add integration test for each repository to save and fetch entity.
+    Add one integration test for each repository to save and fetch entity.
     Refer OrderRepositoryTest for example. We have used @SpringbootTest instead of @DataJPATest which
     minimizes bean creation in favor of speed and therefore is less close to real application behaviour
      */
