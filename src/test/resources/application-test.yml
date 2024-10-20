@@ -1,0 +1,2 @@
+notifications:
+  url: "http://localhost:8082/notifications" # to be overridden with localhost in integration tests

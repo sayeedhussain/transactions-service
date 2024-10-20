@@ -1,4 +1,4 @@
-package com.example.integrationtests;
+package com.example.integrationtests.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -40,13 +40,18 @@ public class Order {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public Order(String orderNumber, LocalDateTime orderDate, String status,
-                 BigDecimal totalAmount, Long customerId) {
+    public Order(
+            Long customerId,
+            String orderNumber,
+            String status,
+            BigDecimal totalAmount,
+            LocalDateTime orderDate
+            ) {
+        this.customerId = customerId;
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
         this.status = status;
         this.totalAmount = totalAmount;
-        this.customerId = customerId;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }

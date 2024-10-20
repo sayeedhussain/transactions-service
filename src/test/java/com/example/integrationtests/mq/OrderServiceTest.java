@@ -1,5 +1,6 @@
 package com.example.integrationtests.mq;
 
+import com.example.integrationtests.OrderService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -26,7 +27,7 @@ public class OrderServiceTest {
     @Disabled
     public void testPlaceOrder() {
         String orderId = "123";
-        orderService.placeOrder(orderId);
+//        orderService.placeOrder(orderId);
         
         ArgumentCaptor<String> messageCaptor = ArgumentCaptor.forClass(String.class);
         verify(rabbitTemplate).convertAndSend("order.queue", messageCaptor.capture());

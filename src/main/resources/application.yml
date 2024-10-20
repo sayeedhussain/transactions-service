@@ -17,3 +17,6 @@ spring:
     hibernate:
       ddl-auto: validate
     open-in-view: false
+
+notifications:
+  url: "https://notification-server.free.beeceptor.com/notifications" # to be overridden with localhost in integration tests
