@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 public class LoyaltyResponse {
     private Long id;
-//    private Long customerId;
+    private Long customerId;
     private String orderNumber;
     private BigDecimal orderAmount;
     private BigDecimal loyaltyPointsAdded;
