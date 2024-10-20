@@ -1,6 +1,6 @@
 package com.example.integrationtests;
 
-import com.example.integrationtests.client.NotificationClient;
+import com.example.integrationtests.apiClient.NotificationClient;
 import com.example.integrationtests.db.OrderRepository;
 import com.example.integrationtests.model.NotificationResponse;
 import com.example.integrationtests.model.Order;

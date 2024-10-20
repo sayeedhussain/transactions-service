@@ -1,4 +1,4 @@
-package com.example.integrationtests.client;
+package com.example.integrationtests.apiClient;
 
 import com.example.integrationtests.model.NotificationResponse;
 import com.example.integrationtests.model.Order;

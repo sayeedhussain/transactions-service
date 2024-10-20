@@ -1,4 +1,4 @@
-package com.example.integrationtests.client;
+package com.example.integrationtests.apiClient;
 
 import lombok.Getter;
 import lombok.Setter;
