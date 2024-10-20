@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.assertj.core.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -64,6 +65,30 @@ public class NotificationClientTest {
         verify(postRequestedFor(urlEqualTo("/notifications")));
     }
 
+    @Test
+    public void testSendNotificationRetryOnFailure() {
+        // Given
+        Order order = new Order(
+                133L,
+                "ORD_AAX122",
+                "PENDING",
+                new BigDecimal("499.99"),
+                LocalDateTime.now()
+        );
+        stubForPostNotificationFailure();
+
+        // When
+        try {
+            notificationClient.sendOrderNotification(order);
+            fail("Expected exception to be thrown"); //fail test if exception is not thrown after 3 retries
+        } catch (Exception e) {
+            // Then
+            verify(3, postRequestedFor(urlEqualTo("/notifications")).withRequestBody(
+                    equalToJson("{\"customerId\":133,\"orderNumber\":\"ORD_AAX122\",\"message\":\"Order placed successfully\"}")
+            ));
+        }
+    }
+
     private void stubForPostNotificationSuccess() {
         stubFor(post(urlEqualTo("/notifications"))
                 .withRequestBody(equalToJson("{\"customerId\":123,\"orderNumber\":\"ORD_AAX122\",\"message\":\"Order placed successfully\"}"))
@@ -72,5 +97,14 @@ public class NotificationClientTest {
                         .withHeader("Content-Type", "application/json")
                         .withBody(
                                 "{\"id\":101,\"customerId\":123,\"orderNumber\":\"ORD_AAX122\",\"message\":\"Order placed successfully\",\"createdAt\":\"2024-10-19T10:45:30\"}")));
+    }
+
+    private void stubForPostNotificationFailure() {
+        stubFor(post(urlEqualTo("/notifications"))
+                .withRequestBody(equalToJson("{\"customerId\":133,\"orderNumber\":\"ORD_AAX122\",\"message\":\"Order placed successfully\"}"))
+                .willReturn(aResponse()
+                        .withStatus(500)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("Server Error")));
     }
 }
