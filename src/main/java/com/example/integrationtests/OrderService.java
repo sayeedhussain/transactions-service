@@ -8,6 +8,9 @@ import com.example.integrationtests.model.OrderDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.Random;
 
 @Service
 public class OrderService {
@@ -21,17 +24,31 @@ public class OrderService {
     }
 
     public void placeOrder(OrderDTO orderDTO) {
+        String orderNumber = generateOrderNumber();
         Order order = new Order(
                 orderDTO.getCustomerId(),
-                "ORD_AAX123",
+                orderNumber,
                 "PENDING",
                 orderDTO.getAmount(),
                 LocalDateTime.now()
                 );
-        System.out.print(order.getId());
         orderRepository.save(order);
-        System.out.print(order.getId());
         NotificationResponse response = notificationClient.sendOrderNotification(order);
-        System.out.println("Notification ID: " + response.getId());
+    }
+
+    private String generateOrderNumber() {
+        Random random = new Random();
+
+        // Generate first 3 capital letters (A-Z)
+        String letters = IntStream.range(0, 3)
+                .mapToObj(i -> "" + (char) ('A' + random.nextInt(26)))
+                .collect(Collectors.joining());
+
+        // Generate last 3 digits (0-9)
+        String digits = IntStream.range(0, 3)
+                .mapToObj(i -> "" + random.nextInt(10))
+                .collect(Collectors.joining());
+
+        return "ORD_" + letters + digits;
     }
 }
