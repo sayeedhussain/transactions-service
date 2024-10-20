@@ -18,5 +18,8 @@ spring:
       ddl-auto: validate
     open-in-view: false
 
-notifications:
-  url: "https://notification-server.free.beeceptor.com/notifications" # to be overridden with localhost in integration tests
+api-client:
+  notifications:
+    url: "https://notification-server.free.beeceptor.com/notifications" # to be overridden with localhost in integration tests
+  loyalties:
+    url: "https://loyalties-server.free.beeceptor.com/loyalties" # to be overridden with localhost in integration tests

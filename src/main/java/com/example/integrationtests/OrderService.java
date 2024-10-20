@@ -1,8 +1,8 @@
 package com.example.integrationtests;
 
+import com.example.integrationtests.apiClient.LoyaltyClient;
 import com.example.integrationtests.apiClient.NotificationClient;
 import com.example.integrationtests.db.OrderRepository;
-import com.example.integrationtests.model.NotificationResponse;
 import com.example.integrationtests.model.Order;
 import com.example.integrationtests.model.OrderDTO;
 import org.springframework.stereotype.Service;
@@ -17,10 +17,16 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
     private final NotificationClient notificationClient;
+    private final LoyaltyClient loyaltyClient;
 
-    public OrderService(OrderRepository orderRepository, NotificationClient notificationClient) {
+    public OrderService(
+            OrderRepository orderRepository,
+            NotificationClient notificationClient,
+            LoyaltyClient loyaltyClient
+    ) {
         this.orderRepository = orderRepository;
         this.notificationClient = notificationClient;
+        this.loyaltyClient = loyaltyClient;
     }
 
     public void placeOrder(OrderDTO orderDTO) {
@@ -28,12 +34,13 @@ public class OrderService {
         Order order = new Order(
                 orderDTO.getCustomerId(),
                 orderNumber,
-                "PENDING",
+                "CONFIRMED",
                 orderDTO.getAmount(),
                 LocalDateTime.now()
                 );
         orderRepository.save(order);
-        NotificationResponse response = notificationClient.sendOrderNotification(order);
+        notificationClient.sendOrderNotification(order);
+        loyaltyClient.addLoyalty(order);
     }
 
     private String generateOrderNumber() {

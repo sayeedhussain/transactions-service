@@ -18,7 +18,7 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody OrderDTO orderRequest) {
         orderService.placeOrder(orderRequest);
-        String responseMessage = "Order has been successfully created.";
+        String responseMessage = "Order placed!";
         return new ResponseEntity<>(responseMessage, HttpStatus.CREATED);
     }
 }

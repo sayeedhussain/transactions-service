@@ -22,7 +22,8 @@ public class NotificationClient {
     }
 
     /*
-    Add integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic in each ApiClient.
+    1. Add integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic.
+    2. Add integration test for @Retryable
      */
     @Retryable(
             maxAttempts = 3,
@@ -57,8 +58,13 @@ public class NotificationClient {
     }
 
     /*
-    Given one api call (above) is integration tested, this and any other api calls in this class can be unit tested by mocking RestTemplate.
+    1. Given one api call (above) is integration tested, this and any other api calls in this class can be unit tested by mocking RestTemplate.
+    2. No need to add integration test for @Retryable as it is already integration tested for above api call
      */
+    @Retryable(
+            maxAttempts = 3,
+            backoff = @Backoff(delay = 1000, multiplier = 2)
+    )
     public NotificationResponse getNotification(String notificationId) {
         String url = notificationClientConfig.getUrl() + notificationId;
         try {

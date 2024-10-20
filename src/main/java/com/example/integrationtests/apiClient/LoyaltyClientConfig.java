@@ -6,9 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "api-client.notifications")
+@ConfigurationProperties(prefix = "api-client.loyalties")
 @Getter
 @Setter
-public class NotificationClientConfig {
+public class LoyaltyClientConfig {
     private String url;
 }
