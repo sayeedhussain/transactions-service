@@ -9,4 +9,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     //No integration test required for simple derived query methods
     List<Order> findByCustomerId(Long customerId);
+
+    //No integration test required for simple derived query methods
+    List<Order> findByOrderNumber(String orderNumber);
 }

@@ -32,10 +32,10 @@ public class OrderRepositoryTest {
         orderRepository.save(order);
 
         //When
-        Optional<Order> savedOrder = orderRepository.findById(1L);
+        Optional<Order> savedOrder = orderRepository.findById(order.getId());
 
         //Then
-        assertEquals(101L, savedOrder.get().getCustomerId());
+        assertEquals("ORD_AAX111", savedOrder.get().getOrderNumber());
     }
 
 }
