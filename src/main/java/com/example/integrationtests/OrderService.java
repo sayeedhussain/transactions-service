@@ -49,6 +49,7 @@ public class OrderService {
                 .mapToObj(i -> "" + random.nextInt(10))
                 .collect(Collectors.joining());
 
+        //orderNumbers like ORD_ABC123
         return "ORD_" + letters + digits;
     }
 }
