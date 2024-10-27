@@ -1,13 +1,11 @@
-#TODO Change to dockerfile.dev format
+FROM gradle:8.7-jdk21 AS build
 
-# Digest for nonroot tag
-FROM gcr.io/distroless/java21@sha256:0ba7333a0fb7cbcf90b18073132f4f445870608e8cdc179664f10ce4d00964c2
-EXPOSE 8080
-
+VOLUME ["/app"]
 WORKDIR /app
 
-COPY ./build/libs/*.jar integration-tests.jar
+# Fix for CVE-2022-24765 (https://github.blog/2022-04-12-git-security-vulnerability-announced/)
+RUN git config --global --add safe.directory /app
 
-ADD --chmod=444 https://dtdg.co/java-tracer-v1 dd-java-agent.jar
+ENTRYPOINT ["gradle"]
 
-CMD ["integration-tests.jar"]
+CMD ["bootRun", "--debug"]
