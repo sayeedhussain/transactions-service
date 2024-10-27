@@ -55,10 +55,6 @@ dependencies {
 	// WireMock for mocking HTTP calls
 	testImplementation "org.wiremock:wiremock-jetty12:3.9.1"
 
-	// Adds support for testing RabbitMQ-related components.
-	//TODO check if you need this dependency
-	testImplementation 'org.springframework.amqp:spring-rabbit-test'
-
 	// Required to run JUnit Platform Launcher for executing test cases.
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
