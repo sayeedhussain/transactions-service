@@ -26,10 +26,16 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-url: https://dev-123456.okta.com/oauth2/default
+          issuer-uri: https://dev-123456.okta.com/oauth2/default
 
 api-client:
   notifications:
     url: "https://notification-server.free.beeceptor.com/notifications" # to be overridden with localhost in integration tests
   loyalties:
     url: "https://loyalties-server.free.beeceptor.com/loyalties" # to be overridden with localhost in integration tests
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

@@ -62,6 +62,9 @@ dependencies {
 	// Adds support for mocking HTTP calls
 	testImplementation "org.wiremock:wiremock-jetty12:3.9.1"
 
+	// Adds support for mocking oauth2 issuer
+	testImplementation 'com.squareup.okhttp3:mockwebserver:4.11.0'
+
 	// Required to run JUnit Platform Launcher for executing test cases.
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
