@@ -9,6 +9,8 @@ import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class OrderShippedListener {
 
@@ -27,7 +29,12 @@ public class OrderShippedListener {
     public void handleOrderShippedMessage(OrderShippedMessage message) {
         System.out.println("Received Order Shipped Message: " + message);
 
-        Order order = orderRepository.findById(message.getOrderId()).get();
+        Optional<Order> optionalOrder = orderRepository.findById(message.getOrderId());
+        if (optionalOrder.isEmpty()) {
+            System.out.println("Order Not found {orderId}: " + message.getOrderId());
+            return;
+        }
+        Order order = optionalOrder.get();
         order.setStatus(OrderStatus.SHIPPED);
         order.setTrackingNumber(message.getTrackingNumber());
 
