@@ -31,9 +31,9 @@ dependencies {
 	// Provides Spring Data JPA to work with relational databases.
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// Adds postgres jdbc driver
-	implementation 'org.postgresql:postgresql:42.6.0'
+	implementation 'org.postgresql:postgresql:42.7.2'
 
-	// Adds support for message-driven microservices using RabbitMQ.
+	// Adds support for RabbitMQ.
 	implementation 'org.springframework.boot:spring-boot-starter-amqp'
 
 	// Provides the core features for building web applications, including REST APIs.
@@ -45,6 +45,10 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	// Adds support for reducing boilerplate code with Lombok annotations in tests.
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
 	// Includes basic testing infrastructure for Spring Boot applications (JUnit, Mockito, etc.).
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -52,6 +56,7 @@ dependencies {
 	testImplementation "org.wiremock:wiremock-jetty12:3.9.1"
 
 	// Adds support for testing RabbitMQ-related components.
+	//TODO check if you need this dependency
 	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 
 	// Required to run JUnit Platform Launcher for executing test cases.

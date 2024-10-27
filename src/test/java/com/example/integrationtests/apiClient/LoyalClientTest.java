@@ -3,6 +3,7 @@ package com.example.integrationtests.apiClient;
 import com.example.integrationtests.model.LoyaltyResponse;
 import com.example.integrationtests.model.NotificationResponse;
 import com.example.integrationtests.model.Order;
+import com.example.integrationtests.model.OrderStatus;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,7 +46,7 @@ public class LoyalClientTest {
         Order order = new Order(
                 123L,
                 "ORD_AAX124",
-                "PENDING",
+                OrderStatus.PENDING,
                 new BigDecimal("499.99"),
                 LocalDateTime.now()
         );

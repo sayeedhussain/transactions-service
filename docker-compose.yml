@@ -34,14 +34,7 @@ services:
 #      - RABBIT_HOSTNAME=amqp://rabbitmq
 #    depends_on:
 #      - db
-##      - rabbitmq
-
-#  rabbitmq:
-#    container_name: rabbitmq
-#    image: ${REGISTRY_URL}rabbitmq:3.8.22-management
-#    ports:
-#      - "5672:5672"
-#      - "15672:15672"
+#      - rabbitMQ
 
   db:
     image: postgres:17.0
@@ -52,6 +45,17 @@ services:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=dbpassword
       - POSTGRES_DB=integrationTestsDB
+
+  rabbitMQ:
+    image: rabbitmq:management
+    container_name: integration-tests-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json
 
 #volumes:
 #  gradle_user_home:

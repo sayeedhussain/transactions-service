@@ -1,6 +1,7 @@
 package com.example.integrationtests.db;
 
 import com.example.integrationtests.model.Order;
+import com.example.integrationtests.model.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,7 +26,7 @@ public class OrderRepositoryTest {
         Order order = new Order(
                 101L,
                 "ORD_AAX111",
-                "PENDING",
+                OrderStatus.PENDING,
                 new BigDecimal("499.99"),
                 LocalDateTime.now()
                 );

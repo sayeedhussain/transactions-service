@@ -22,11 +22,15 @@ public class Order {
     @Column(name = "order_number", nullable = false, unique = true, length = 50)
     private String orderNumber;
 
+    @Column(name = "tracking_number")
+    private String trackingNumber;
+
     @Column(name = "order_date", nullable = false)
     private LocalDateTime orderDate;
 
     @Column(nullable = false, length = 20)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @Column(name = "total_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalAmount;
@@ -43,7 +47,7 @@ public class Order {
     public Order(
             Long customerId,
             String orderNumber,
-            String status,
+            OrderStatus status,
             BigDecimal totalAmount,
             LocalDateTime orderDate
             ) {
@@ -55,6 +59,15 @@ public class Order {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
+
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();

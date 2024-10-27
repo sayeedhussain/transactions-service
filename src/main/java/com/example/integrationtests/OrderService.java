@@ -5,6 +5,8 @@ import com.example.integrationtests.apiClient.NotificationClient;
 import com.example.integrationtests.db.OrderRepository;
 import com.example.integrationtests.model.Order;
 import com.example.integrationtests.model.OrderDTO;
+import com.example.integrationtests.model.OrderStatus;
+import com.example.integrationtests.mq.OrderPlacedSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,14 +21,17 @@ public class OrderService {
     private final NotificationClient notificationClient;
     private final LoyaltyClient loyaltyClient;
 
+    private final OrderPlacedSender orderPlacedSender;
+
     public OrderService(
             OrderRepository orderRepository,
             NotificationClient notificationClient,
-            LoyaltyClient loyaltyClient
-    ) {
+            LoyaltyClient loyaltyClient,
+            OrderPlacedSender orderPlacedSender) {
         this.orderRepository = orderRepository;
         this.notificationClient = notificationClient;
         this.loyaltyClient = loyaltyClient;
+        this.orderPlacedSender = orderPlacedSender;
     }
 
     public void placeOrder(OrderDTO orderDTO) {
@@ -34,13 +39,14 @@ public class OrderService {
         Order order = new Order(
                 orderDTO.getCustomerId(),
                 orderNumber,
-                "CONFIRMED",
+                OrderStatus.PENDING,
                 orderDTO.getAmount(),
                 LocalDateTime.now()
                 );
         orderRepository.save(order);
         notificationClient.sendOrderNotification(order);
         loyaltyClient.addLoyalty(order);
+        orderPlacedSender.sendOrderPlacedMessage(order);
     }
 
     private String generateOrderNumber() {
