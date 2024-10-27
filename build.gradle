@@ -3,6 +3,8 @@ plugins {
 	id 'org.springframework.boot' version '3.3.3'
 	// Adds support for managing dependencies automatically
 	id 'io.spring.dependency-management' version '1.1.6'
+	// Adds support for linting
+	id 'com.diffplug.spotless' version '6.25.0'
 }
 
 group = 'com.example'
@@ -38,8 +40,13 @@ dependencies {
 
 	// Provides the core features for building web applications, including REST APIs.
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// Supports JSON serialization/deserialization with Jackson.
+
+	// Adds support for JSON serialization/deserialization with Jackson.
 	implementation 'org.springframework.boot:spring-boot-starter-json'
+
+	// Adds support for api auth
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
 	// Adds support for reducing boilerplate code with Lombok annotations.
 	compileOnly 'org.projectlombok:lombok'
@@ -52,7 +59,7 @@ dependencies {
 	// Includes basic testing infrastructure for Spring Boot applications (JUnit, Mockito, etc.).
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	// WireMock for mocking HTTP calls
+	// Adds support for mocking HTTP calls
 	testImplementation "org.wiremock:wiremock-jetty12:3.9.1"
 
 	// Required to run JUnit Platform Launcher for executing test cases.
@@ -62,3 +69,4 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
