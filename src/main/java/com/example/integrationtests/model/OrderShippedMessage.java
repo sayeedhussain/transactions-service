@@ -3,23 +3,15 @@ package com.example.integrationtests.model;
 import java.time.LocalDateTime;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class OrderShippedMessage {
   private Long orderId;
   private String orderNumber;
   private String trackingNumber;
   private LocalDateTime shippedDate;
-
-  @Override
-  public String toString() {
-    return "OrderShippedMessage{" +
-        "orderId='" + orderId + '\'' +
-        "orderNumber='" + orderNumber + '\'' +
-        ", trackingNumber='" + trackingNumber + '\'' +
-        ", shippedDate=" + shippedDate +
-        '}';
-  }
 }

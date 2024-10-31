@@ -58,7 +58,7 @@ public class OrderPlacedSenderTest {
 @Service
 class TestOrderPlacedListener {
 
-  private CountDownLatch latch = new CountDownLatch(1);
+  private final CountDownLatch latch = new CountDownLatch(1);
   private TestOrderPlacedMessage receivedMessage;
 
   @RabbitListener(queues = "order.placed.queue")
