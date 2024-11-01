@@ -9,8 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.integrationtests.OrderService;
-import com.example.integrationtests.model.OrderItemDTO;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +19,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.example.integrationtests.OrderService;
+import com.example.integrationtests.model.OrderItemDTO;
 import com.github.tomakehurst.wiremock.WireMockServer;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -68,8 +68,7 @@ public class OAuthIntegrationTest {
       restTemplate.postForObject(
           url,
           requestEntity,
-          String.class
-      );
+          String.class);
       fail("Expected exception to be thrown");
     } catch (HttpClientErrorException e) {
       // Then
@@ -95,8 +94,7 @@ public class OAuthIntegrationTest {
       restTemplate.postForObject(
           url,
           requestEntity,
-          String.class
-      );
+          String.class);
       fail("Expected exception to be thrown"); // fail test if exception is not thrown after 3 retries
     } catch (HttpClientErrorException e) {
       // Then
@@ -120,13 +118,12 @@ public class OAuthIntegrationTest {
     HttpEntity<Map<String, Object>> requestEntity = createOrderRequestEntity(headers);
 
     // When
-     ResponseEntity<String> response = restTemplate.postForEntity(
-          url,
-          requestEntity,
-          String.class
-     );
+    ResponseEntity<String> response = restTemplate.postForEntity(
+        url,
+        requestEntity,
+        String.class);
 
-     // Then
+    // Then
     assertEquals(HttpStatusCode.valueOf(201), response.getStatusCode());
     wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/openid-configuration")));
     wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/jwks.json")));
@@ -138,9 +135,9 @@ public class OAuthIntegrationTest {
 
   private void stubForJWKS(String jwks) {
     stubFor(get("/.well-known/openid-configuration")
-            .willReturn(okJson("{\"issuer\": \"http://localhost:8083\",\"jwks_uri\": \"http://localhost:8083/.well-known/jwks.json\"}")));
+      .willReturn(okJson("{\"issuer\": \"http://localhost:8083\",\"jwks_uri\": \"http://localhost:8083/.well-known/jwks.json\"}")));
     stubFor(get("/.well-known/jwks.json")
-            .willReturn(okJson(jwks)));
+      .willReturn(okJson(jwks)));
   }
 
   private HttpEntity<Map<String, Object>> createOrderRequestEntity(HttpHeaders headersToAdd) {

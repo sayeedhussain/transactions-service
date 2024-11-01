@@ -25,19 +25,16 @@ public class LoyaltyClient {
    */
   @Retryable(
       maxAttempts = 3,
-      backoff = @Backoff(delay = 1000, multiplier = 2)
-  )
+      backoff = @Backoff(delay = 1000, multiplier = 2))
   public LoyaltyResponse addLoyalty(Order order) {
     LoyaltyRequest request = new LoyaltyRequest(
         order.getCustomerId(),
         order.getOrderNumber(),
-        order.getTotalAmount()
-    );
+        order.getTotalAmount());
 
     try {
-        return restTemplate.postForObject(
-            loyaltyClientConfig.getUrl(), request, LoyaltyResponse.class
-        );
+      return restTemplate.postForObject(
+          loyaltyClientConfig.getUrl(), request, LoyaltyResponse.class);
 
     } catch (HttpStatusCodeException e) {
       System.err.println("Failed to send notification. Status: " + e.getStatusCode());

@@ -27,17 +27,14 @@ public class NotificationClient {
    */
   @Retryable(
       maxAttempts = 3,
-      backoff = @Backoff(delay = 1000, multiplier = 2)
-  )
+      backoff = @Backoff(delay = 1000, multiplier = 2))
   public NotificationResponse sendOrderNotification(Order order) {
     NotificationRequest request = new NotificationRequest(
-        order.getCustomerId(), order.getOrderNumber(), "Order placed successfully"
-    );
+        order.getCustomerId(), order.getOrderNumber(), "Order placed successfully");
 
     try {
-        return restTemplate.postForObject(
-            notificationClientConfig.getUrl(), request, NotificationResponse.class
-        );
+      return restTemplate.postForObject(
+          notificationClientConfig.getUrl(), request, NotificationResponse.class);
 
     } catch (HttpStatusCodeException e) {
       System.err.println("Failed to send notification. Status: " + e.getStatusCode());
