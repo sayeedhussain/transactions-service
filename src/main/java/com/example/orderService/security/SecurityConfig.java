@@ -44,7 +44,7 @@ public class SecurityConfig {
   private void authorizeRequests(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry auth) {
     auth
       .requestMatchers(request -> request.getMethod().equals("POST") &&
-          request.getRequestURI().equals("/api/ordersz"))
+          request.getRequestURI().equals("/api/orders"))
       .hasAuthority("SCOPE_order:write");
   }
 
