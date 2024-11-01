@@ -22,12 +22,14 @@ public class NotificationClient {
     this.notificationClientConfig = notificationClientConfig;
   }
 
-  /*
-   * 1. Add integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic. 2. Add integration test for @Retryable
+  /* INFO:
+   * 1. Add happy path integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic.
+   * 2. Add integration test for @Retryable
    */
   @Retryable(
       maxAttempts = 3,
-      backoff = @Backoff(delay = 1000, multiplier = 2))
+      backoff = @Backoff(delay = 1000, multiplier = 2)
+  )
   public NotificationResponse sendOrderNotification(Order order) {
     NotificationRequest request = new NotificationRequest(
         order.getCustomerId(), order.getOrderNumber(), "Order placed successfully");
@@ -48,24 +50,24 @@ public class NotificationClient {
   @Recover
   public NotificationResponse recover(Exception e, NotificationRequest request) throws Exception {
     // Handle the case when all retry attempts fail
-    // For example, log the error and return a default response or throw a custom exception
     System.err.println("Failed to send notification after retries: " + e.getMessage());
     throw e;
   }
 
-  /*
-   * 1. Given one api call (above) is integration tested, this and any other api calls in this class can be unit tested by mocking RestTemplate. 2. No need to add integration test for @Retryable as it
-   * is already integration tested for above api call
+  /* INFO:
+   * 1. Given one api call (above) is integration tested, this and any other api calls in this class can be unit tested by mocking RestTemplate.
+   * 2. No need to add integration test for @Retryable as it is already integration tested for above api call
    */
   @Retryable(
       maxAttempts = 3,
-      backoff = @Backoff(delay = 1000, multiplier = 2))
+      backoff = @Backoff(delay = 1000, multiplier = 2)
+  )
   public NotificationResponse getNotification(String notificationId) {
     String url = notificationClientConfig.getUrl() + notificationId;
     try {
-      NotificationResponse response = restTemplate.getForObject(
-          url, NotificationResponse.class);
-      return response;
+        return restTemplate.getForObject(
+            url, NotificationResponse.class
+        );
 
     } catch (HttpStatusCodeException e) {
       System.err.println("Failed to send notification. Status: " + e.getStatusCode());

@@ -19,6 +19,9 @@ public class OrderShippedListener {
     this.orderRepository = orderRepository;
   }
 
+  /* INFO:
+   * 1. Add one happy path integration test for each rabbitMQ message listener.
+   */
   @RabbitListener(queues = "order.shipped.queue")
   public void handleOrderShippedMessage(OrderShippedMessage message) {
     System.out.println("Received Order Shipped Message: " + message);

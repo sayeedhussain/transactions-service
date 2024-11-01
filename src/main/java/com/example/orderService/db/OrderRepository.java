@@ -8,27 +8,32 @@ import com.example.orderService.model.Order;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-  /*
-   * Add one integration test for each repository to save and fetch entity. Refer OrderRepositoryTest for example. We have used @SpringbootTest instead of @DataJPATest which minimizes bean creation in
-   * favor of speed and therefore is less close to real application behaviour
+  /* INFO:
+   * Add one happy path integration test for each repository to save and fetch entity. Refer OrderRepositoryTest for example.
+   * We have used @SpringbootTest instead of @DataJPATest to ensure all beans are created to simulate the real application behaviour.
    */
 
-  // No integration test required for simple JPA derived query methods
+  /* INFO:
+   * No integration test required for simple JPA derived query methods.
+   */
   List<Order> findByCustomerId(Long customerId);
 
-  // No integration test required for simple JPA derived query methods
+
+  /* INFO:
+   * No integration test required for simple JPA derived query methods.
+   */
   List<Order> findByOrderNumber(String orderNumber);
 
-  /*
-   * Add integration test for complex sql queries like below
+  /* INFO:
+   * Add on happy path integration test for complex sql queries like below (sample code).
    *
    * @Query( "SELECT new CustomerOrderDTO( " + "c.customerId, c.name, o.orderId, o.orderDate, o.totalAmount) " + "FROM Customer c  JOIN c.orders o " + "WHERE c.customerId = :customerId " +
    * "ORDER BY o.orderDate DESC") List<CustomerOrderDTO> findOrdersByCustomerId( @Param("customerId") Long customerId );
    */
 
-  /*
-   * Add integration test for complex JPA derived queries like below. Greater than 5 filter criteria can be considered complex. Below method has 8 i.e (6 params) + (paymentMethod != null) + (isGift ==
-   * true)
+  /* INFO:
+   * Add one happy path integration test for complex JPA derived queries like below (sample code). > 5 filter criteria can be considered complex.
+   * Below method has 8 i.e (6 params) + (paymentMethod != null) + (isGift == true)
    *
    * List<Order> findByCustomerIdAndOrderStatusInAndPaymentMethodIsNotNullAndIsGiftTrueAndTotalAmountBetweenAndCreatedAtBetween( String customerId, List<OrderStatus> statuses, BigDecimal minAmount,
    * BigDecimal maxAmount, LocalDateTime startDate, LocalDateTime endDate );

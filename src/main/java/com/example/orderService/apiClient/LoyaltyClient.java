@@ -19,9 +19,9 @@ public class LoyaltyClient {
     this.loyaltyClientConfig = loyaltyClientConfig;
   }
 
-  /*
-   * 1. Add integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic. 2. No need to add integration test for @Retryable as it is already integration tested in
-   * NotificationClient.
+  /* INFO:
+   * 1. Add integration test for one api call (200 OK) in each ApiClient. Unit test the remaining logic.
+   * 2. No need to add integration test for @Retryable as it is already integration tested in NotificationClient.
    */
   @Retryable(
       maxAttempts = 3,

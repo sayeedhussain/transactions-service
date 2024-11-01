@@ -1,6 +1,7 @@
 package com.example.orderService;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,7 +36,7 @@ public class OrderService {
     this.orderPlacedSender = orderPlacedSender;
   }
 
-  public void placeOrder(OrderDTO orderDTO) {
+  public Order placeOrder(OrderDTO orderDTO) {
     String orderNumber = generateOrderNumber();
     Order order = new Order(
         orderDTO.getCustomerId(),
@@ -47,6 +48,11 @@ public class OrderService {
     notificationClient.sendOrderNotification(order);
     loyaltyClient.addLoyalty(order);
     orderPlacedSender.sendOrderPlacedMessage(order);
+    return order;
+  }
+
+  public Optional<Order> getOrder(Long orderId) {
+    return orderRepository.findById(orderId);
   }
 
   private String generateOrderNumber() {
