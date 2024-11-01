@@ -44,7 +44,7 @@ dependencies {
 	// Adds support for JSON serialization/deserialization with Jackson.
 	implementation 'org.springframework.boot:spring-boot-starter-json'
 
-	// Adds support for api auth
+	// Adds support for oauth
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
@@ -66,7 +66,7 @@ dependencies {
 	testImplementation 'io.jsonwebtoken:jjwt-api:0.11.2'
 	testRuntimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
 	testRuntimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2' // or jjwt-gson if you prefer Gson
-	testImplementation 'com.nimbusds:nimbus-jose-jwt:9.31'
+	testImplementation 'com.nimbusds:nimbus-jose-jwt:9.37.2'
 
 	// Required to run JUnit Platform Launcher for executing test cases.
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
