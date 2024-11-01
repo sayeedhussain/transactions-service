@@ -6,8 +6,8 @@ import org.springframework.retry.annotation.EnableRetry;
 
 @SpringBootApplication
 @EnableRetry // To enable retry on failure in NotificationClient
-public class IntegrationTestsApplication {
+public class OrderServiceApplication {
   public static void main(String[] args) {
-    SpringApplication.run(IntegrationTestsApplication.class, args);
+    SpringApplication.run(OrderServiceApplication.class, args);
   }
 }
