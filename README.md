@@ -34,7 +34,7 @@ open another terminal tab/window, cd into the root folder and execute the below 
 ```bash
 ./gradlew bootRun --args='--enableAuth=false'
 ```
-open another terminal tab/window, cd into the root folder and execute the below command
+open another terminal tab/window, and hit the POST/GET order endpoints
 ```bash
 curl -v -X POST http://localhost:8080/api/orders \ 
 -H "Content-Type: application/json" \
