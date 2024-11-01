@@ -101,6 +101,8 @@ public class OAuthIntegrationTest {
     } catch (HttpClientErrorException e) {
       // Then
       assertEquals(HttpStatusCode.valueOf(403), e.getStatusCode());
+      wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/openid-configuration")));
+      wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/jwks.json")));
     }
   }
 
@@ -126,6 +128,8 @@ public class OAuthIntegrationTest {
 
      // Then
     assertEquals(HttpStatusCode.valueOf(201), response.getStatusCode());
+    wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/openid-configuration")));
+    wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/jwks.json")));
   }
 
   private String url(String endpoint) {
@@ -135,7 +139,6 @@ public class OAuthIntegrationTest {
   private void stubForJWKS(String jwks) {
     stubFor(get("/.well-known/openid-configuration")
             .willReturn(okJson("{\"issuer\": \"http://localhost:8083\",\"jwks_uri\": \"http://localhost:8083/.well-known/jwks.json\"}")));
-
     stubFor(get("/.well-known/jwks.json")
             .willReturn(okJson(jwks)));
   }
