@@ -10,6 +10,8 @@ The approach this repo recommends/demonstrates is to add just the bare minimum i
 
 Appropriate number of integration tests are added for each external component that the order-service integrates with. No unit tests are added as the purpose of this repo is to demonstrate integration tests.
 
+Search for <span style="color:yellow">"INFO: "</span> text in entire project to understand the reasoning for the number of integration tests added for each component.
+
 ## External components order-service integrates with
 1. API services (notification-Service, loyalty-service)
 2. Database (postgres)
