@@ -20,4 +20,4 @@ Appropriate number of integration tests are added for each external component th
 - Uses wiremock for mocking APIs services and oauth api calls
 - Uses docker containers for spinning up postgres and rabbitmq components for integration tests
 - Uses flyway for db migration scripts
-- Uses dummy public/private key pair (pem files) in test/resources for generating JWT tokens for oauth integration tests   
+- Uses dummy public/private key pair (pem files) in test/resources for generating JWT tokens for oauth integration tests
