@@ -1,9 +1,9 @@
 # order-service (integration tests demo)
 
-### The challenge
+## The challenge
 A common challenge when doing integration tests is that if they are overdone to validate too much logic, it can slow down the test suite delaying feedback and increasing CI time. 
 
-### What this repo does
+## What this repo does
 This repo demonstrates how to implement integration tests the right way and avoid overdoing it.
 
 The approach this repo recommends/demonstrates is to add just the bare minimum integration tests to validate the integration of the service with external components and cover all the other logic in the unit tests for faster feedback and reduced CI time.
