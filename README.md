@@ -19,7 +19,7 @@ Search for "INFO: " text in entire project to understand the reasoning for each 
 4. OAuth (okta)
 
 ## Running integration tests
-open terminal, cd into the root folder and execute the below command to spin up postgres and rabbitMQ components
+open terminal, cd into the root folder and execute the below command to spin up postgres and rabbitMQ
 ```bash
 docker-compose down && docker-compose up
 ```
@@ -28,7 +28,7 @@ open another terminal tab/window, cd into the root folder and execute the below 
 ./gradlew clean build
 ```
 ## Running the app
-open terminal, cd into the root folder and execute the below command to spin up postgres and rabbitMQ components
+open terminal, cd into the root folder and execute the below command to spin up postgres and rabbitMQ
 ```bash
 docker-compose down && docker-compose up
 ```
