@@ -11,11 +11,17 @@ import org.springframework.security.config.annotation.web.configurers.AuthorizeH
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
+  /* INFO:
+   * Add 3 integration tests for 200, 401, 403 for any one authenticated endpoint of the application.
+   * If oauth is wired up for any one endpoint properly and calls are happening to the auth provider, it will work for all endpoints of the application.
+   * Remaining auth configuration/logic can be covered in unit tested of this (SecurityConfig) class.
+   * Refer OAuthIntegrationTest class. We have added 3 tests for POST /orders endpoint. No more oauth integration tests are required for the application.
+   */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Value("${enableAuth}")
+    @Value("${enableAuth:true}") //default true
     private Boolean enableAuth;
 
   @Bean
@@ -43,8 +49,7 @@ public class SecurityConfig {
 
   private void authorizeRequests(AuthorizeHttpRequestsConfigurer<HttpSecurity>.AuthorizationManagerRequestMatcherRegistry auth) {
     auth
-      .requestMatchers(request -> request.getMethod().equals("POST") &&
-          request.getRequestURI().equals("/api/orders"))
+      .requestMatchers(request -> request.getRequestURI().equals("/api/orders"))
       .hasAuthority("SCOPE_order:write");
   }
 

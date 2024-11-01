@@ -55,7 +55,7 @@ curl -v -X POST http://localhost:8080/api/orders \
 }'
 ```
 ```bash
-curl -X GET http://localhost:8080/api/orders/3
+curl -v http://localhost:8080/api/orders/2
 ```
 
 ## Notes
