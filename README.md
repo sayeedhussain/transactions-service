@@ -1,18 +1,18 @@
 # order-service (integration tests demo)
 
 ## The challenge
-A common challenge when doing integration tests is that if they are overdone to validate too much logic, it can slow down the test suite delaying feedback and increasing CI time. 
+A common challenge when doing integration tests is that if they are overdone to validate too much logic, they can slow down the test suite delaying feedback and increasing CI time. 
 
 ## What this repo does
-This repo demonstrates how to implement integration tests the right way and avoid overdoing it.
+This repo `order-service` demonstrates how to implement integration tests the right way and avoid overdoing it.
 
-The approach this repo recommends/demonstrates is to add just the bare minimum integration tests to validate the integration of the service with external components and cover all the other logic in the unit tests for faster feedback and reduced CI time.
+The approach recommended here is to add just the bare minimum integration tests to validate the integration of the service with external components and cover all the other logic in unit tests to achieve faster feedback and reduced CI time.
 
-Appropriate number of integration tests are added for each external component that the order-service integrates with. No unit tests are added as the purpose of this repo is to demonstrate integration tests.
+Appropriate number of integration tests are added for each external component that `order-service` integrates with. No unit tests are added as the purpose is to demonstrate integration tests.
 
-Search for "INFO: " text in entire project to understand the reasoning for the number of integration tests added for each component.
+Search for "INFO: " text in entire project to understand the reasoning for each of the integration tests added.
 
-## External components order-service integrates with
+## External components `order-service` integrates with
 1. API services (notification-Service, loyalty-service)
 2. Database (postgres)
 3. Queue (rabbit-mq)
