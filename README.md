@@ -16,6 +16,16 @@ Appropriate number of integration tests are added for each external component th
 3. Queue (rabbit-mq)
 4. OAuth (okta)
 
+## How to Run
+open terminal, cd into the root folder and execute the below command
+```bash
+docker-compose down && docker-compose up
+```
+open another terminal tab/window, cd into the root folder and execute the below command
+```bash
+./gradlew clean build
+```
+
 ## Notes
 - Uses wiremock for mocking APIs services and oauth api calls
 - Uses docker containers for spinning up postgres and rabbitmq components for integration tests

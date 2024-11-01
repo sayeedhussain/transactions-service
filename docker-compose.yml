@@ -1,39 +1,5 @@
-#TODO Review file
-
 version: '3'
 services:
-#  order-service:
-#    container_name: order-service
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      # Add caching
-#      - gradle_user_home:/gradle_user_home
-#      # Gradle cache
-#      - ./.gradle:/app/.gradle
-#      # build cache
-#      - ./build:/app/build
-#      # Add git to docker, so we can access the tags for use in gradle versioning
-#      - ./.git:/app/.git
-#      # App sources
-#      - ./src:/app/src
-#      - ./build.gradle:/app/build.gradle
-#      - ./gradle.properties:/app/gradle.properties
-#      - ./settings.gradle:/app/settings.gradle
-#      - ./config:/app/config
-#    environment:
-#      - JDBC_DATABASE_URL=jdbc:postgresql://db:5432/integrationTestsDB
-#      - JDBC_DATABASE_USERNAME=dbuser
-#      - JDBC_DATABASE_PASSWORD=dbpassword
-#      - GRADLE_USER_HOME=/gradle_user_home
-#      - SPRING_PROFILES_ACTIVE
-#      - RABBIT_HOSTNAME=amqp://rabbitmq
-#    depends_on:
-#      - db
-#      - rabbitMQ
 
   db:
     image: postgres:17.0
@@ -55,7 +21,3 @@ services:
       RABBITMQ_DEFAULT_USER: guest
       RABBITMQ_DEFAULT_PASS: guest
       RABBITMQ_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json
-
-#volumes:
-#  gradle_user_home:
-#  postgres_data:
