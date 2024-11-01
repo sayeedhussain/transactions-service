@@ -43,7 +43,6 @@ public class OrderPlacedSenderTest {
 
     // When
     sender.sendOrderPlacedMessage(order);
-    Thread.sleep(2000); // wait for order placed message to be sent
 
     // Then
     boolean messageReceived = listener.getLatch().await(2, TimeUnit.SECONDS);
@@ -55,6 +54,7 @@ public class OrderPlacedSenderTest {
 }
 
 
+@Getter
 @Service
 class TestOrderPlacedListener {
 
@@ -65,14 +65,6 @@ class TestOrderPlacedListener {
   public void listen(TestOrderPlacedMessage message) {
     this.receivedMessage = message;
     latch.countDown(); // Signal that the message was received
-  }
-
-  public TestOrderPlacedMessage getReceivedMessage() {
-    return receivedMessage;
-  }
-
-  public CountDownLatch getLatch() {
-    return latch;
   }
 }
 

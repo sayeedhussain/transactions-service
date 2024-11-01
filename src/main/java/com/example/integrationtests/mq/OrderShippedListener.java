@@ -21,12 +21,6 @@ public class OrderShippedListener {
     this.orderRepository = orderRepository;
   }
 
-  // TODO Do we need this
-  @Bean
-  public Jackson2JsonMessageConverter converter() {
-    return new Jackson2JsonMessageConverter();
-  }
-
   @RabbitListener(queues = "order.shipped.queue")
   public void handleOrderShippedMessage(OrderShippedMessage message) {
     System.out.println("Received Order Shipped Message: " + message);

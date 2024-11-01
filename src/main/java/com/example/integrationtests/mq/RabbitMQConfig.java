@@ -4,6 +4,7 @@ import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,6 +34,11 @@ public class RabbitMQConfig {
   @Bean
   public Binding bindingPlacedQueue(Queue orderPlacedQueue, DirectExchange orderExchange) {
     return BindingBuilder.bind(orderPlacedQueue).to(orderExchange).with("order.placed");
+  }
+
+  @Bean
+  public Jackson2JsonMessageConverter converter() {
+    return new Jackson2JsonMessageConverter();
   }
 
 }

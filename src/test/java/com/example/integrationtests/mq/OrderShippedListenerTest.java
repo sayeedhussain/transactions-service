@@ -28,7 +28,7 @@ public class OrderShippedListenerTest {
 
   @Test
   public void testOrderShippedMessageReceived() throws InterruptedException {
-
+    
     // Given
     Order order = new Order(
         101L,
