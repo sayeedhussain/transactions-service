@@ -19,24 +19,24 @@ Search for "INFO: " text in entire project to understand the reasoning for each 
 4. OAuth (okta)
 
 ## Running integration tests
-open terminal, cd into the root folder and execute the below command to spin up postgres and rabbitMQ
+Spin up postgres and rabbitMQ
 ```bash
 docker-compose down && docker-compose up
 ```
-open another terminal tab/window, cd into the root folder and execute the below command
+Run tests
 ```bash
 ./gradlew clean build
 ```
 ## Running the app
-open terminal, cd into the root folder and execute the below command to spin up postgres and rabbitMQ
+Spin up postgres and rabbitMQ
 ```bash
 docker-compose down && docker-compose up
 ```
-open another terminal tab/window, cd into the root folder and execute the below command
+Run the application with oauth disabled
 ```bash
 ./gradlew bootRun --args='--enableAuth=false'
 ```
-open another terminal tab/window, and hit the POST/GET order endpoints
+Hit the POST / GET order endpoints
 ```bash
 curl -v -X POST http://localhost:8080/api/orders \ 
 -H "Content-Type: application/json" \
