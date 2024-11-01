@@ -10,7 +10,7 @@ The approach recommended here is to add just the bare minimum integration tests 
 
 Appropriate number of integration tests are added for each external component that `order-service` integrates with. No unit tests are added as the purpose is to demonstrate integration tests.
 
-Search for "INFO: " text in entire project to understand the reasoning for each of the integration tests added.
+Search for "INFO: " text in entire project to understand the reasoning for each integration test.
 
 ## External components `order-service` integrates with
 1. API services (notification-Service, loyalty-service)
