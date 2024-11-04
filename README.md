@@ -65,4 +65,4 @@ curl -v http://localhost:8080/api/orders/2
 - Uses docker containers for spinning up postgres and rabbitmq components for integration tests
 - Uses flyway for db migration scripts
 - Uses dummy public/private key pair (pem files) in test/resources for generating JWT tokens for oauth integration tests
-- You may notice test failures if you invoke the endpoints in local and then run integration tests and the RabbitMQ listener will get queued messages from endpoint invocation. Follow [Running integration tests](#running-integration-tests) section to fix the issue. 
+- You may notice test failures if you invoke the endpoints in local and then run integration tests as the RabbitMQ listener will get queued order placed messages from endpoint invocation. Follow [Running integration tests](#running-integration-tests) section to fix the issue. 
