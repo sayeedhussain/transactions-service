@@ -4,6 +4,9 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8083
+  test:
+    database:
+      replace: none #Added for this issue https://stackoverflow.com/a/41316559/2227101
 
 api-client:
   notifications:
