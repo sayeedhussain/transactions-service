@@ -105,7 +105,7 @@ public class OAuthIntegrationTest {
   }
 
   @Test
-  public void shouldReturn200WhenAccessTokenIsInvalid() throws Exception {
+  public void shouldReturn200WhenAccessTokenIsValid() throws Exception {
 
     // Given
     stubForJWKS(jwks);
