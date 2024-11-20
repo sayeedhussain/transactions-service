@@ -13,6 +13,7 @@ Appropriate number of integration tests are added for each external component th
 Search for "INFO: " text in entire project to understand the reasoning for each integration test.
 
 ## External components `order-service` integrates with
+![diagram](./integration-tests.jpg)
 1. API services (notification-Service, loyalty-service)
 2. Database (postgres)
 3. Queue (rabbit-mq)
