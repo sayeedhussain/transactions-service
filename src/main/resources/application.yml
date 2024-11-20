@@ -26,7 +26,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: https://dev-123456.okta.com/oauth2/default
+          issuer-uri: https://dev-123456.okta.com/oauth2/default # dummy value
 
 api-client:
   notifications:
