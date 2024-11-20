@@ -14,8 +14,8 @@ public class OrderPlacedSender {
   @Autowired
   private RabbitTemplate rabbitTemplate;
 
-  /* INFO:
-   * 1. Add one happy path integration test for each rabbitmq message sender.
+  /*
+   * INFO: 1. Add one happy path integration test for each rabbitmq message sender.
    */
   public void sendOrderPlacedMessage(Order order) {
     OrderPlacedMessage message = new OrderPlacedMessage(order);

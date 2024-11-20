@@ -9,14 +9,13 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.example.orderService.model.Order;
 import com.example.orderService.model.OrderStatus;
 
-//We use @DataJpaTest here instead of @SpringbootTest to reduce Spring context loading time.
-//Refer this for more details https://www.baeldung.com/junit-datajpatest-repository
+// We use @DataJpaTest here instead of @SpringbootTest to reduce Spring context loading time.
+// Refer this for more details https://www.baeldung.com/junit-datajpatest-repository
 @DataJpaTest
 @ActiveProfiles("test")
 public class OrderRepositoryTest {

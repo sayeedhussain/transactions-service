@@ -1,15 +1,13 @@
 package com.example.orderService;
 
-import com.example.orderService.model.Order;
-import jakarta.websocket.server.PathParam;
-import org.aspectj.weaver.ast.Or;
+import java.util.Optional;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.orderService.model.Order;
 import com.example.orderService.model.OrderDTO;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/orders")
@@ -31,8 +29,8 @@ public class OrderController {
   public ResponseEntity<Order> getOrder(@PathVariable("orderId") Long orderId) {
     Optional<Order> order = orderService.getOrder(orderId);
     return order
-            .map(ResponseEntity::ok)
-            .orElseGet(() -> ResponseEntity.ok().build());
+      .map(ResponseEntity::ok)
+      .orElseGet(() -> ResponseEntity.ok().build());
   }
 
 }
