@@ -19,14 +19,10 @@ Search for "INFO: " text in entire project to understand the reasoning for each 
 4. OAuth (okta)
 
 ## Running integration tests
-Spin up postgres and rabbitMQ
 ```bash
-docker-compose down && docker-compose up
+docker-compose down && docker compose run order-service gradle build
 ```
-Run tests
-```bash
-./gradlew clean build
-```
+
 ## Running the app
 Spin up postgres and rabbitMQ
 ```bash
