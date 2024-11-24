@@ -15,8 +15,10 @@ import org.springframework.test.context.ActiveProfiles;
 import com.example.orderService.model.Order;
 import com.example.orderService.model.OrderStatus;
 
-// We use @DataJpaTest here instead of @SpringbootTest to increase speed by loading minimal Spring context.
-// Refer this for more details https://www.baeldung.com/junit-datajpatest-repository
+/*
+* INFO: We use @DataJpaTest here instead of @SpringbootTest to increase speed by loading minimal Spring context.
+*  Refer this for more details https://www.baeldung.com/junit-datajpatest-repository
+*/
 @DataJpaTest
 @ActiveProfiles("test")
 public class OrderRepositoryTest {

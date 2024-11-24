@@ -6,7 +6,7 @@ A common challenge when doing integration tests is that if they are overdone to 
 ## What this repo does
 This repo `order-service` demonstrates how to implement integration tests the right way and avoid overdoing it.
 
-The approach recommended here is to add just the bare minimum integration tests to validate the integration with external components and cover all the remaining logic in unit tests to achieve faster feedback and reduced CI time.
+The approach recommended here is to cover minimum scenarios in integration tests to validate integration with external components and cover all the remaining logic in unit tests to achieve faster feedback and reduced CI time.
 
 Appropriate number of integration tests are added for each external component that `order-service` integrates with. No unit tests are added as the purpose is to demonstrate integration tests.
 
