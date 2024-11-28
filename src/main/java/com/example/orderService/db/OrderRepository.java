@@ -25,7 +25,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
   List<Order> findByOrderNumber(String orderNumber);
 
   /*
-   * INFO: Add on happy path integration test for complex sql queries like below (sample code).
+   * INFO: Add one happy path integration test for complex sql queries like below (sample code).
    *
    * @Query( "SELECT new CustomerOrderDTO( " + "c.customerId, c.name, o.orderId, o.orderDate, o.totalAmount) " + "FROM Customer c  JOIN c.orders o " + "WHERE c.customerId = :customerId " +
    * "ORDER BY o.orderDate DESC") List<CustomerOrderDTO> findOrdersByCustomerId( @Param("customerId") Long customerId );
