@@ -73,6 +73,8 @@ public class OAuthIntegrationTest {
     } catch (HttpClientErrorException e) {
       // Then
       assertEquals(HttpStatusCode.valueOf(401), e.getStatusCode());
+      wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/openid-configuration")));
+      wireMockServer.verify(1, getRequestedFor(urlEqualTo("/.well-known/jwks.json")));
     }
   }
 
