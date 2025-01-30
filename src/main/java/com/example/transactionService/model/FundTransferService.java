@@ -1,17 +1,16 @@
 package com.example.transactionService.model;
 
-import com.example.transactionService.db.AccountRepository;
-import org.springframework.stereotype.Service;
+import java.math.BigDecimal;
 
-@Service
 public class FundTransferService {
 
-  private final AccountRepository accountRepository;
-
-  public FundTransferService(
-      AccountRepository accountRepository
-  ) {
-    this.accountRepository = accountRepository;
-  }
-
+    public Boolean transferFunds(
+            Account sourceAccount,
+            Account destinationAccount,
+            BigDecimal amount
+    ) {
+        Boolean withdrawalSuccess = sourceAccount.withdraw(amount);
+        Boolean depositSuccess = destinationAccount.deposit(amount);
+        return withdrawalSuccess && depositSuccess;
+    }
 }

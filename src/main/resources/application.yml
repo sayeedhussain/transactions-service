@@ -17,22 +17,6 @@ spring:
     hibernate:
       ddl-auto: validate
     open-in-view: false
-  rabbitmq:
-    host: "${RABBITMQ_HOST:localhost}"
-    port: "${RABBITMQ_PORT:5672}"
-    username: "${RABBITMQ_USERNAME:guest}"
-    password: "${RABBITMQ_PASSWORD:guest}"
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: https://dev-123456.okta.com/oauth2/default # dummy value
-
-api-client:
-  notifications:
-    url: "https://notification-server.free.beeceptor.com/notifications" # to be overridden with localhost in integration tests
-  loyalties:
-    url: "https://loyalties-server.free.beeceptor.com/loyalties" # to be overridden with localhost in integration tests
 
 logging:
   level:

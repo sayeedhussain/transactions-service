@@ -25,10 +25,11 @@ public class Account {
   @Setter
   @Column(name = "account_status", nullable = false, length = 20)
   @Enumerated(EnumType.STRING)
-  private AccountStatus status;
+  private AccountStatus accountStatus;
 
-  @Column(name = "minimum_balance", nullable = false, precision = 10, scale = 2)
-  private BigDecimal minimumBalance;
+  @Column(name = "account_type", nullable = false, length = 20)
+  @Enumerated(EnumType.STRING)
+  private AccountType accountType;
 
   @Column(nullable = false, precision = 10, scale = 2)
   private BigDecimal balance;
@@ -41,12 +42,13 @@ public class Account {
 
   public Account(
       String customerId,
-      AccountStatus status,
-      BigDecimal minimumBalance,
-      BigDecimal balance) {
+      AccountStatus accountStatus,
+      AccountType accountType,
+      BigDecimal balance
+  ) {
     this.customerId = customerId;
-    this.status = status;
-    this.minimumBalance = minimumBalance;
+    this.accountStatus = accountStatus;
+    this.accountType = accountType;
     this.balance = balance;
     this.createdAt = LocalDateTime.now();
     this.updatedAt = LocalDateTime.now();
@@ -62,4 +64,31 @@ public class Account {
   protected void onUpdate() {
     this.updatedAt = LocalDateTime.now();
   }
+
+  public Boolean withdraw(BigDecimal amount) {
+    if (this.accountStatus != AccountStatus.ACTIVE) {
+      return false;
+    }
+
+    if (!canWithdraw(amount)) {
+            return false;
+    }
+
+    this.balance = this.balance.subtract(amount);
+    return true;
+  }
+
+  public Boolean deposit(BigDecimal amount) {
+    if (this.accountStatus != AccountStatus.ACTIVE) {
+      return false;
+    }
+
+    this.balance = this.balance.add(amount);
+    return true;
+  }
+
+  private boolean canWithdraw(BigDecimal amount) {
+    return this.balance.subtract(amount).compareTo(this.accountType.getMinimumBalance()) > 0;
+  }
+
 }
