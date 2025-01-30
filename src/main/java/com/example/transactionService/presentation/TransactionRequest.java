@@ -1,4 +1,4 @@
-package com.example.transactionService.dto;
+package com.example.transactionService.presentation;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

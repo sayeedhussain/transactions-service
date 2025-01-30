@@ -1,8 +1,8 @@
-package com.example.transactionService;
+package com.example.transactionService.application;
 
-import com.example.transactionService.db.AccountRepository;
-import com.example.transactionService.model.Account;
-import com.example.transactionService.model.FundTransferService;
+import com.example.transactionService.infrastructure.AccountRepository;
+import com.example.transactionService.domain.Account;
+import com.example.transactionService.domain.FundTransferService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

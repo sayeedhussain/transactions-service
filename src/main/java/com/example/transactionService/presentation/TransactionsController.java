@@ -1,6 +1,6 @@
-package com.example.transactionService;
+package com.example.transactionService.presentation;
 
-import com.example.transactionService.dto.TransactionRequest;
+import com.example.transactionService.application.TransactionsService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
