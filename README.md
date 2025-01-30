@@ -32,7 +32,3 @@ curl -v -X POST http://localhost:8080/api/transactions \
   ]
 }'
 ```
-```bash
-curl -v http://localhost:8080/api/orders/2
-```
-
