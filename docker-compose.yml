@@ -1,8 +1,8 @@
 services:
 
-  order-service:
+  transactions-service:
     image: gradle:8.7-jdk21
-    container_name: order-service
+    container_name: transactions-service
     working_dir: /home/gradle
     volumes:
       - ./src:/home/gradle/src
@@ -13,13 +13,8 @@ services:
       - JDBC_DATABASE_URL=jdbc:postgresql://db:5432/integrationTestsDB
       - JDBC_DATABASE_USERNAME=dbuser
       - JDBC_DATABASE_PASSWORD=dbpassword
-      - RABBITMQ_HOST=rabbitMQ
-      - RABBITMQ_PORT=5672
-      - RABBITMQ_USERNAME=guest
-      - RABBITMQ_PASSWORD=guest
     depends_on:
       - db
-      - rabbitMQ
 
   db:
     image: postgres:17.0
@@ -30,17 +25,6 @@ services:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=dbpassword
       - POSTGRES_DB=integrationTestsDB
-
-  rabbitMQ:
-    image: rabbitmq:management
-    container_name: order-service-rabbitmq
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-      RABBITMQ_LOAD_DEFINITIONS: /etc/rabbitmq/definitions.json
 
 volumes:
   gradle_cache:
