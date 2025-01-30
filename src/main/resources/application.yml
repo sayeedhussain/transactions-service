@@ -2,12 +2,12 @@ spring:
   application:
     name: transactions-service
   datasource:
-    url: "${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5435/integrationTestsDB}"
+    url: "${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5435/transactionsDB}"
     username: "${JDBC_DATABASE_USERNAME:dbuser}"
     password: "${JDBC_DATABASE_PASSWORD:dbpassword}"
     driver-class-name: org.postgresql.Driver
   flyway:
-    url: "${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5435/integrationTestsDB}"
+    url: "${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5435/transactionsDB}"
     user: "${JDBC_DATABASE_USERNAME:dbuser}"
     password: "${JDBC_DATABASE_PASSWORD:dbpassword}"
   jpa:

@@ -10,7 +10,7 @@ services:
       - ./build:/home/gradle/build  # Mount the build directory for reports
       - gradle_cache:/home/gradle/.gradle # Cache Gradle dependencies
     environment:
-      - JDBC_DATABASE_URL=jdbc:postgresql://db:5432/integrationTestsDB
+      - JDBC_DATABASE_URL=jdbc:postgresql://db:5432/transactionsDB
       - JDBC_DATABASE_USERNAME=dbuser
       - JDBC_DATABASE_PASSWORD=dbpassword
     depends_on:
@@ -18,13 +18,13 @@ services:
 
   db:
     image: postgres:17.0
-    container_name: order-service-db
+    container_name: transactions-service-db
     ports:
       - "5435:5432"
     environment:
       - POSTGRES_USER=dbuser
       - POSTGRES_PASSWORD=dbpassword
-      - POSTGRES_DB=integrationTestsDB
+      - POSTGRES_DB=transactionsDB
 
 volumes:
   gradle_cache:

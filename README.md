@@ -14,21 +14,11 @@ Run the application
 ```
 Hit the POST endpoint
 ```bash
-curl -v -X POST http://localhost:8080/api/transactions \ 
+curl -v -X POST http://localhost:8080/api/transactions \
 -H "Content-Type: application/json" \
 -d '{
-  "customerId": 123,
-  "items": [
-    {
-      "name": "Laptop",
-      "qty": 1,
-      "price": 50000.00
-    },
-    {
-      "name": "Mouse",
-      "qty": 2,
-      "price": 1500.00
-    }
-  ]
+  "sourceAccountId": 1,
+  "destinationAccountId": 2,
+  "amount": 500.00
 }'
 ```

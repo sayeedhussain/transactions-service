@@ -17,7 +17,7 @@ public class TransactionsController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> transferFunds(@RequestBody TransactionRequest transactionRequest) {
+    public ResponseEntity<String> transferFunds(@RequestBody TransactionRequest transactionRequest) {
         Boolean success = transactionsService.transferFunds(
                 transactionRequest.getSourceAccountId(),
                 transactionRequest.getDestinationAccountId(),
@@ -25,10 +25,11 @@ public class TransactionsController {
         );
 
         if (!success) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Transaction failed", HttpStatus.BAD_REQUEST);
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        //add success response with string body "Transaction successful"
+        return new ResponseEntity<>("Transaction successful", HttpStatus.OK);
     }
 
 }

@@ -1,7 +1,10 @@
 package com.example.transactionService.model;
 
+import org.springframework.stereotype.Service;
+
 import java.math.BigDecimal;
 
+@Service
 public class FundTransferService {
 
     public Boolean transferFunds(
